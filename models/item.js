@@ -1,0 +1,5 @@
+name
+room
+condition
+adminComment
+userComment
