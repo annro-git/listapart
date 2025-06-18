@@ -1,10 +1,7 @@
 {
   "dependencies": {
     "dotenv": "^16.5.0",
-    "h3": "^1.15.3",
+    "express": "^5.1.0",
     "mongoose": "^8.16.0"
-  },
-  "scripts": {
-    "dev": "npx --yes listhen ./app.mjs"
   }
 }

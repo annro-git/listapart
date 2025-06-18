@@ -1,22 +1,9 @@
-import { createApp, defineEventHandler } from "h3";
-import mongoose from "mongoose";
-import dotenv from 'dotenv'
+import express from 'express'
 
-dotenv.config()
+const app = express()
 
-const app = createApp();
+app.get('/', (req, res) => {
+  res.send('Hello World')
+})
 
-const connect = async () => {
-  await mongoose.connect(process.env.CONNECTION_STRING)
-  console.log('Connected!')
-}
-
-try {
-  connect()
-} catch (e) {
-  console.log(e)
-}
-
-app.use(defineEventHandler(() => "Hello world!"));
-
-export default app
+app.listen(3000)
