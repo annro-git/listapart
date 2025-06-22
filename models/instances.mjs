@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
-import Item from "./items.mjs";
 
 const instanceSchema = mongoose.Schema({
-  instances: [Item],
+  instances: [{ type: mongoose.Schema.Types.ObjectId, ref: 'items' }],
   status: Number
 })
 

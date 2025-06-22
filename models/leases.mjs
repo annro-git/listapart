@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
-import Instance from "./instances.mjs";
 
 const leaseSchema = mongoose.Schema({
   name: String,
-  arrival: Instance,
-  departure: Instance
+  arrival: { type: mongoose.Schema.Types.ObjectId, ref: 'instances' },
+  departure: { type: mongoose.Schema.Types.ObjectId, ref: 'instances' }
 })
 
 const Lease = mongoose.model('leases', leaseSchema)

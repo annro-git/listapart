@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
-import Room from "./rooms.mjs";
 
 const itemSchema = mongoose.Schema({
   name: String,
-  room: Room,
+  room: { type: mongoose.Schema.Types.ObjectId, ref: 'rooms' },
   condition: Number,
   comment: String,
 })
