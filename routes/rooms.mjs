@@ -9,8 +9,8 @@ router.post('/', async (req, res) => {
   try {
     const newRoom = await room.save()
     res.json({ result: true, newRoom })
-  } catch (e) {
-    res.json({ result: false, e})
+  } catch (error) {
+    res.json({ result: false, error})
   }
 })
 

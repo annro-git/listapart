@@ -14,9 +14,20 @@ router.post('/new/', async (req, res) => {
     await instance.save()
     res.json({ result: true, itemNumber: itemList.length })
   } catch (e) {
-    res.json({ result: false, e})
+    res.json({ result: false, e })
   }
+})
 
+router.post('/copy/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const { itemList } = await Instance.findById(id)
+    const instance = new Instance({ itemList, completed: false })
+    await instance.save()
+    res.json({ result: true, itemNumber: itemList.length })
+  } catch (error) {
+    res.json({ result: false, error })
+  }
 })
 
 export { router as instanceRouter }

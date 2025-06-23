@@ -9,8 +9,8 @@ router.post('/', async (req, res) => {
   try {
     const newItem = await item.save()
     res.json({ result: true, newItem })
-  } catch (e) {
-    res.json({ result: false, e})
+  } catch (error) {
+    res.json({ result: false, error})
   }
 })
 
