@@ -11,7 +11,18 @@ router.post('/', async (req, res) => {
     res.json({ result: true, newItem })
   } catch (error) {
     console.error(error)
-    res.json({ result: false, error})
+    res.json({ result: false, error })
+  }
+})
+
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    await Item.deleteOne({ _id: id })
+    res.json({ result: true })
+  } catch (error) {
+    console.error(error)
+    res.json({ result: false, error })
   }
 })
 
