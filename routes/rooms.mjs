@@ -10,6 +10,7 @@ router.post('/', async (req, res) => {
     const newRoom = await room.save()
     res.json({ result: true, newRoom })
   } catch (error) {
+    console.error(error)
     res.json({ result: false, error})
   }
 })

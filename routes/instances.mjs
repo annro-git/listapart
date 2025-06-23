@@ -4,6 +4,7 @@ import { Router } from "express";
 
 const router = Router()
 
+// COPY ALL ITEMS FROM SCRATCH
 router.post('/new/', async (req, res) => {
   const items = await Item.find({})
   const itemList = items.map(({ name, room, type, condition, comment }) => {
@@ -18,6 +19,7 @@ router.post('/new/', async (req, res) => {
   }
 })
 
+// COPY ALL ITEMS FROM AN INSTANCE
 router.post('/copy/:id', async (req, res) => {
   const { id } = req.params
   try {
@@ -26,6 +28,37 @@ router.post('/copy/:id', async (req, res) => {
     await instance.save()
     res.json({ result: true, itemNumber: itemList.length })
   } catch (error) {
+    res.json({ result: false, error })
+  }
+})
+
+// UPDATE AN INSTANCE
+router.put('/:id', async (req, res) => {
+  const { id } = req.params
+  const { itemList, completed } = req.body
+  try {
+    if (!itemList && completed) {
+      await Instance.findOneAndUpdate({ _id: id }, { completed })
+    } else if (itemList && !completed) {
+      await Instance.findOneAndUpdate({ _id: id }, { itemList })
+    } else {
+      await Instance.findOneAndUpdate({ _id: id }, { itemList, completed })
+    }
+    res.json({ result: true })
+  } catch (error) {
+    console.error(error)
+    res.json({ result: false, error })
+  }
+})
+
+// DELETE AN INSTANCE
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    await Instance.deleteOne({ _id: id })
+    res.json({ result: true })
+  } catch (error) {
+    console.error(error)
     res.json({ result: false, error })
   }
 })
