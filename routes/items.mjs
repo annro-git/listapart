@@ -3,6 +3,7 @@ import { Router } from "express";
 
 const router = Router()
 
+// CREATE AN ITEM
 router.post('/', async (req, res) => {
   const { name, room, type, condition, comment } = req.body
   const item = new Item({ name, type, room, condition, comment })
@@ -15,6 +16,7 @@ router.post('/', async (req, res) => {
   }
 })
 
+// DELETE AN ITEM
 router.delete('/:id', async (req, res) => {
   const { id } = req.params
   try {

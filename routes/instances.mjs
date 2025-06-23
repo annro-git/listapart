@@ -4,6 +4,18 @@ import { Router } from "express";
 
 const router = Router()
 
+// READ AN INSTANCE
+router.get('/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const instance = await Instance.findById(id)
+    res.json({ result: true, instance })
+  } catch (error) {
+    console.error(error)
+    res.json({ result: false, error })
+  }
+})
+
 // COPY ALL ITEMS FROM SCRATCH
 router.post('/new/', async (req, res) => {
   const items = await Item.find({})
@@ -14,8 +26,9 @@ router.post('/new/', async (req, res) => {
   try {
     await instance.save()
     res.json({ result: true, itemNumber: itemList.length })
-  } catch (e) {
-    res.json({ result: false, e })
+  } catch (error) {
+    console.error(error)
+    res.json({ result: false, error })
   }
 })
 
@@ -28,6 +41,7 @@ router.post('/copy/:id', async (req, res) => {
     await instance.save()
     res.json({ result: true, itemNumber: itemList.length })
   } catch (error) {
+    console.error(error)
     res.json({ result: false, error })
   }
 })

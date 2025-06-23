@@ -3,6 +3,7 @@ import { Router } from "express";
 
 const router = Router()
 
+// CREATE A ROOM
 router.post('/', async (req, res) => {
   const { name } = req.body
   const room = new Room({ name })
