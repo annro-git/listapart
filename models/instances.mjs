@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 const instanceSchema = mongoose.Schema({
-  instances: [{ type: mongoose.Schema.Types.ObjectId, ref: 'items' }],
-  status: Number
+  itemList: [ Object ],
+  completed: Boolean
 })
 
 const Instance = mongoose.model('instances', instanceSchema)
